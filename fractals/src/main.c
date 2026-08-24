@@ -6,22 +6,22 @@
 #include "mandelbrot.h"
 
 Color getColorBasedOnInvocations(int numOfInvocations) {
-	if (numOfInvocations < 20) {
+	if (numOfInvocations < 80) {
 		return RED;
 	}
-	else if (numOfInvocations < 40) {
+	else if (numOfInvocations < 120) {
 		return ORANGE;
 	}
-	else if (numOfInvocations < 60) {
+	else if (numOfInvocations < 160) {
 		return YELLOW;
 	}
-	else if (numOfInvocations < 80) {
+	else if (numOfInvocations < 200) {
 		return GREEN;
 	}
-	else if (numOfInvocations < 100) {
+	else if (numOfInvocations < 240) {
 		return BLUE;
 	}
-	else if (numOfInvocations < 120) {
+	else if (numOfInvocations < 340) {
 		return PURPLE;
 	}
 	return WHITE; // Placeholder, replace with actual color logic
@@ -67,6 +67,7 @@ int main ()
 		.step = ySpan / GetScreenHeight()
 	};
 	calculateMandelbrot(screen, GetScreenHeight(), GetScreenWidth(), &xRange, &yRange);
+	printf("Max OpenMP threads: %d\n", omp_get_max_threads());
 	// game loop
 	while (!WindowShouldClose())		// run the loop until the user presses ESCAPE or presses the Close button on the window
 	{
