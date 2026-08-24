@@ -11,3 +11,16 @@ struct Result checkValue(struct Complex c, int maxIterations) {
 	}
 	return (struct Result) { .bounded = true, .tillInfty = maxIterations };
 }
+
+void calculateMandelbrot(struct Result* res, int rows, int cols, struct Range* xRange, struct Range* yRange) {
+	int rowNum = 0, colNum = 0;
+	for (double row = yRange->min; row < yRange->max && rowNum < rows; row += yRange->step, rowNum++) {
+		for (double col = xRange->min; col < xRange->max && colNum < cols; col += xRange->step, colNum++) {
+			struct Complex c = { .real = col, .imag = row };
+			struct Result result = checkValue(c, 200);
+			res[rowNum * cols + colNum] = result;
+		}
+		colNum = 0;
+	}
+}
+
