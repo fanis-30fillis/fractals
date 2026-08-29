@@ -6,8 +6,11 @@ struct Result checkValue(struct Complex c, int maxIterations) {
 		if (complexAbs(z) > 2.0) {
 			return (struct Result) { .bounded = false, .tillInfty = cnt };
 		}
-		z = mulComplex(z, z);
-		z = (struct Complex){ .real = z.real + c.real, .imag = z.imag + c.imag };
+		const double newReal = z.real * z.real - z.imag * z.imag;
+		z.imag = z.real * z.imag + z.imag * z.real;
+		z.real = newReal;
+		z.real += c.real;
+		z.imag += c.imag;
 	}
 	return (struct Result) { .bounded = true, .tillInfty = maxIterations };
 }
