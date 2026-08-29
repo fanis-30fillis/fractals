@@ -68,6 +68,7 @@ int main ()
 	};
 	calculateMandelbrot(screen, GetScreenHeight(), GetScreenWidth(), &xRange, &yRange);
 	printf("Max OpenMP threads: %d\n", omp_get_max_threads());
+	double currentZoom = 1.0;
 	// game loop
 	while (!WindowShouldClose())		// run the loop until the user presses ESCAPE or presses the Close button on the window
 	{
@@ -93,7 +94,7 @@ int main ()
 
 			// Positive wheel zooms in; negative wheel zooms out.
 			double factor = pow(0.8, (double)wheel.y);
-
+			currentZoom *= factor;
 			// Scale both ranges around the mouse coordinate.
 			xRange.min = mouseReal + (xRange.min - mouseReal) * factor;
 			xRange.max = mouseReal + (xRange.max - mouseReal) * factor;
@@ -114,23 +115,23 @@ int main ()
 			);
 		} else {
 			if (IsKeyDown(KEY_LEFT)) {
-				xRange.min = xRange.min + 0.05;
-				xRange.max = xRange.max + 0.05;
+				xRange.min = xRange.min + 0.05 * currentZoom;
+				xRange.max = xRange.max + 0.05 * currentZoom;
 				calculateMandelbrot(screen, GetScreenHeight(), GetScreenWidth(), &xRange, &yRange);
 			}
 			else if (IsKeyDown(KEY_RIGHT)) {
-				xRange.min = xRange.min - 0.05;
-				xRange.max = xRange.max - 0.05;
+				xRange.min = xRange.min - 0.05 * currentZoom;
+				xRange.max = xRange.max - 0.05 * currentZoom;
 				calculateMandelbrot(screen, GetScreenHeight(), GetScreenWidth(), &xRange, &yRange);
 			}
 			else if (IsKeyDown(KEY_UP)) {
-				yRange.min = yRange.min + 0.05;
-				yRange.max = yRange.max + 0.05;
+				yRange.min = yRange.min + 0.05 * currentZoom;
+				yRange.max = yRange.max + 0.05 * currentZoom;
 				calculateMandelbrot(screen, GetScreenHeight(), GetScreenWidth(), &xRange, &yRange);
 			}
 			else if (IsKeyDown(KEY_DOWN)) {
-				yRange.min = yRange.min - 0.05;
-				yRange.max = yRange.max - 0.05;
+				yRange.min = yRange.min - 0.05 * currentZoom;
+				yRange.max = yRange.max - 0.05 * currentZoom;
 				calculateMandelbrot(screen, GetScreenHeight(), GetScreenWidth(), &xRange, &yRange);
 			}
 		}
