@@ -307,9 +307,9 @@
     <ClInclude Include="src\utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.c" />
-    <ClCompile Include="src\mandelbrot.c" />
-    <ClCompile Include="src\utils.c" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\mandelbrot.cpp" />
+    <ClCompile Include="src\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\icon.ico" />
