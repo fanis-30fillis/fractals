@@ -6,22 +6,22 @@
 #include "mandelbrot.h"
 
 Color getColorBasedOnInvocations(int numOfInvocations) {
-	if (numOfInvocations < 80) {
+	if (numOfInvocations < 160) {
 		return RED;
 	}
-	else if (numOfInvocations < 120) {
+	else if (numOfInvocations < 300) {
 		return ORANGE;
 	}
-	else if (numOfInvocations < 160) {
+	else if (numOfInvocations < 380) {
 		return YELLOW;
 	}
-	else if (numOfInvocations < 200) {
+	else if (numOfInvocations < 480) {
 		return GREEN;
 	}
-	else if (numOfInvocations < 240) {
+	else if (numOfInvocations < 520) {
 		return BLUE;
 	}
-	else if (numOfInvocations < 340) {
+	else if (numOfInvocations < 600) {
 		return PURPLE;
 	}
 	return WHITE; // Placeholder, replace with actual color logic
@@ -67,7 +67,6 @@ int main ()
 		.step = ySpan / GetScreenHeight()
 	};
 	calculateMandelbrot(screen, GetScreenHeight(), GetScreenWidth(), &xRange, &yRange);
-	printf("Max OpenMP threads: %d\n", omp_get_max_threads());
 	double currentZoom = 1.0;
 	// game loop
 	while (!WindowShouldClose())		// run the loop until the user presses ESCAPE or presses the Close button on the window
@@ -76,6 +75,8 @@ int main ()
 		BeginDrawing();
 		// Setup the back buffer for drawing (clear color and depth buffers)
 		ClearBackground(BLUE);
+		// up means 0.8 which zooms in, down means 1.2 which zooms out.
+		// 0.2 is the zoom factor per mouse wheel click
 		Vector2 wheel = GetMouseWheelMoveV();
 		if(wheel.y != 0) {
 
@@ -103,7 +104,6 @@ int main ()
 			yRange.max = mouseImag + (yRange.max - mouseImag) * factor;
 
 			xRange.step = (xRange.max - xRange.min) / GetScreenWidth();
-
 			yRange.step = (yRange.max - yRange.min) / GetScreenHeight();
 
 			calculateMandelbrot(
