@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/fractals/build
+/fractals/.vscode
+/fractal-test/bin/x64
+/fractal-test/obj/x64
+/fractal-test/x64/Debug
