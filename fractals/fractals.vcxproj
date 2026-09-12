@@ -302,11 +302,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\julia.h" />
     <ClInclude Include="src\mandelbrot.h" />
     <ClInclude Include="src\resource_dir.h" />
     <ClInclude Include="src\utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\julia.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mandelbrot.cpp" />
     <ClCompile Include="src\utils.cpp" />
