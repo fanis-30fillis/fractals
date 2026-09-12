@@ -1,4 +1,7 @@
+#pragma once
 #include <stdbool.h>
+#include <algorithm>
+#include <raylib.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -16,9 +19,14 @@ extern "C" {
 		bool bounded;
 		int tillInfty;
 	};
-
+	
+	struct Dimensions {
+		int width;
+		int height;
+	};
 	struct Complex mulComplex(struct Complex a, struct Complex b);
 	double complexAbs(struct Complex c);
 #ifdef __cplusplus
 }
 #endif
+Color getColorsBasedOnInvocations(int numOfInvocations, int maxInvocations);
